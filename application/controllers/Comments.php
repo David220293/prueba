@@ -1,6 +1,4 @@
 <?php
-require 'vendor/autoload.php';
-use Mailgun\Mailgun;
 
 class Comments extends CI_Controller{
 
@@ -96,14 +94,8 @@ class Comments extends CI_Controller{
 
 
    		# First, instantiate the SDK with your API credentials and define your domain. 
-		$mg = new Mailgun("key-87d264af96f4f7b9cbe3cf99c842dcdc");
-		$domain = "blog.com";
-
-				# Now, compose and send your message.
-		$mg->sendMessage($domain, array('from'    => 'davidvaldez2202@gmail.com', 
-                                'to'      => 'davidvaldez2202@gmail.com', 
-                                'subject' => 'The PHP SDK is awesome!', 
-                                'text'    => 'It is so simple to send a message.'));
+		$this->mail->send('davidemmanuel2202@gmail.com','davidemmanuel2202@gmail.com','prueba',
+			'probando mailgun');
 		redirect('comments/comments/'.$_POST['entry_id']);
 
 

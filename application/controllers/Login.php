@@ -36,7 +36,6 @@ class Login extends CI_Controller{
 					'user' => $data->user,
 					'name'=>$data->name,
 					'type_user' => $data->type_user,
-					'filename'=> $data->filename,
 					'login' => true,
 					'bann'=> $data->bann
 					);
