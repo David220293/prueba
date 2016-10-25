@@ -47,10 +47,7 @@
 
 <div id="cuerpo">
 	<div id="fr">
-	      <h2><?php echo $this->session->flashdata('bien'); ?></h2>
-  	      <h2><?php echo $this->session->flashdata('reins'); ?></h2> 
- <h2><?php echo $this->session->flashdata('siup'); ?></h2> 
-      <h2><?php echo $this->session->flashdata('noup'); ?></h2> 
+	   
 	<iframe src="<?=site_url('entries/entri');?>" name="cont" ></iframe>
 
 </div>

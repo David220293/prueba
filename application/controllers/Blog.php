@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
 class Blog extends CI_Controller{
 
 	public function __construct(){

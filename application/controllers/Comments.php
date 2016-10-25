@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
 
 class Comments extends CI_Controller{
 
@@ -68,9 +68,9 @@ class Comments extends CI_Controller{
 	    
 
 
-   		# First, instantiate the SDK with your API credentials and define your domain. 
-		//$this->mail->send('davidemmanuel2202@gmail.com','davidemmanuel2202@gmail.com','prueba',
-			//'probando mailgun');
+		$this->mail->send('david@sandbox4f6e13b616174f8094191fd452882252.mailgun.org','davidemmanuel2202@gmail.com','prueba','probando mailgun','aksljdflakjdslksj');
+
+
 		redirect('comments/comments/'.$_POST['entry_id']);
 
 

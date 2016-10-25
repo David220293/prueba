@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No se permite el acceso directo al script');
 
 
 class Entries extends CI_Controller{
@@ -61,7 +61,10 @@ class Entries extends CI_Controller{
 	public function update(){
 		$this->form_validation->set_rules('title', 'title', 'required');
 	 	$this->form_validation->set_rules('body', 'body', 'required');
+
 			 	if ($this->form_validation->run()==true) {
+
+
 					$config['upload_path'] = './assets/images/uploads/';
 					$config['allowed_types'] = 'gif|jpg|png';
 					//$config['max_size']     = '100';
@@ -71,7 +74,7 @@ class Entries extends CI_Controller{
 					$this->load->library('upload', $config);
 					if (!$this->upload->do_upload('userfile')) {
 				# code...
-	             $this->session->set_flashdata('noup','No se subio correctamente el archivo'.$this->upload->display_errors()); 
+	            		 $this->session->set_flashdata('noup','No se subio correctamente el archivo'.$this->upload->display_errors()); 
 					}else{
 						$this->session->set_flashdata('siup','Si se subio el archivo'); 
 					}
@@ -121,7 +124,7 @@ class Entries extends CI_Controller{
 			}else{
 				$this->session->set_flashdata('siup','Si se subio el archivo'); 
 			}
-
+			
 			$entry = array(
                     'title' => htmlspecialchars($this->input->post('title')),
                     'body' => $this->input->post('body'),
