@@ -43,32 +43,7 @@ class Comments extends CI_Controller{
 		$this->load->view('comments_view',$d);
 	}
 
-	/*function del_comments(){
-		$config['base_url'] = base_url().'comments/del_comments';
-		$config['total_rows'] = $this->blog_model->num_comments();
-		$config['per_page'] = 5;
-		$config['num_links'] = 5;
-		$config['first_link'] = '<<';
-		$config['last_link'] = '>>';
-		$config['next_link'] = '>';
-		$config['prev_link'] = '<';
-
-		$this->pagination->initialize($config);
-		$dat = array(
-			'comments' => $this->blog_model->get_comment($config['per_page']),
-			'paginacion'=> $this->pagination->create_links()
-			);		$this->load->view('delete_comments',$dat);
-
-	}*/
-
-/*	function delete_comment(){
-		$id = htmlspecialchars($this->input->post('id'));
-		$this->blog_model->delete_comments($id);
-		redirect('comments/del_comments');
-
-	}*/
-
-
+	
 	
 /*se realiza la insercion de comentarios que son insertados en la vista comments_view y los manda al modelo blog_model al metodo insertComments*/
 
@@ -94,8 +69,8 @@ class Comments extends CI_Controller{
 
 
    		# First, instantiate the SDK with your API credentials and define your domain. 
-		$this->mail->send('davidemmanuel2202@gmail.com','davidemmanuel2202@gmail.com','prueba',
-			'probando mailgun');
+		//$this->mail->send('davidemmanuel2202@gmail.com','davidemmanuel2202@gmail.com','prueba',
+			//'probando mailgun');
 		redirect('comments/comments/'.$_POST['entry_id']);
 
 
@@ -117,14 +92,15 @@ class Comments extends CI_Controller{
 		$this->load->view('bann_view',$datos);
 	}
 	public function bann(){
-		$idcom = $this->input->post('id');
+		$cont = $this->input->post('cont');
 		$user = $this->input->post('user');
 		if (isset($_POST['del'])) {
-			$this->blog_model->delbann($idcom);
+			$this->blog_model->delbann($cont);
 			# code...
 		}elseif(isset($_POST['rest'])){
-			$this->blog_model->updbann($idcom);
+			$this->blog_model->updbann($cont);
 		}else{
+			$this->session->set_userdata('bann', "si");
 			$this->blog_model->bannuser($user);
 		}
 
@@ -132,8 +108,10 @@ class Comments extends CI_Controller{
 	}
 
 	public function reportar(){
-		$id = $this->input->post('id');
-		$this->blog_model->reportar($id);
+
+		$user = $this->input->post('user');
+		$cont = $this->input->post('cont');
+		$this->blog_model->reportar($user,$cont);
         $this->session->set_flashdata('comban','Comentario reportado'); 
 		redirect('comments/comments/'.$_POST['url']);
 

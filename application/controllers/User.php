@@ -103,11 +103,12 @@ class User extends CI_Controller{
 	}
 
 	public function bann_up(){
-		$id = $this->input->post('id');
+		$user = $this->input->post('user');
 		if (isset($_POST['up'])) {
-			$this->blog_model->rm_ban($id);			
+			$this->session->set_userdata('bann', "no");
+			$this->blog_model->rm_ban($user);			
 		}else{
-			$this->blog_model->rm_user($id);
+			$this->blog_model->rm_user($user);
 		}
 	}
 

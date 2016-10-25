@@ -47,7 +47,6 @@
 <p>Para poder escribir comentarios necesitas <?=anchor('login/login_view','Iniciar sesion');?> ó 
 <?=anchor('user/new_user','Registrarte');?></p>
 <?php endif ?>
-<?php if ($this->session->userdata('login')): ?>
 	
 	<?php foreach($comment as $row): ?>
 		<p><?=$row->body?></p>
@@ -55,7 +54,8 @@
 		<?php if ($this->session->userdata('bann')=="no"): ?>
 			<?=form_open('comments/reportar');?>
 		<?=form_hidden('url',$ident);?>
-		<?=form_hidden('id',$row->id);?>
+		<?=form_hidden('user',$row->author);?>
+		<?=form_hidden('cont',$row->body);?>
 		<input type="submit" name="reportar" value="report">
 		</form>
 		
@@ -63,7 +63,6 @@
 		
 		<hr>
 		<?php endforeach;?>
-	<?php endif ?>
 
 <?php echo $paginacion ?>
 

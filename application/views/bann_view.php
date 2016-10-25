@@ -10,7 +10,7 @@
 		<p><?=$row->body?></p>
 		<h4><?=$row->author?> <?=$row->dat?></h4>
 		<?=form_open('comments/bann');?>
-		<?=form_hidden('id',$row->id);?>
+		<?=form_hidden('cont',$row->body);?>
 		<?=form_hidden('user',$row->author);?>
 		<p><input type="submit" name="del" value="Eliminar"><input type="submit" name="rest" value="Restaurar"><input type="submit" name="bann" value="Bannear"></p>
 		</form>

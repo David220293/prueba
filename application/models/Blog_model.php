@@ -89,14 +89,14 @@ class Blog_model extends CI_Model {
             return $data->result();
         }
 
-        public function delbann($id){
+        public function delbann($cont){
             
-            return $this->db->where('id',$id)->delete('comments');
+            return $this->db->where('body',$cont)->delete('comments');
         }
-        public function updbann($id){
+        public function updbann($cont){
             $report = array(
                 'report'=> "no");
-            return $this->db->where('id',$id)->update('comments',$report);
+            return $this->db->where('body',$cont)->update('comments',$report);
 
         }
         public function bannuser($user){
@@ -149,10 +149,11 @@ class Blog_model extends CI_Model {
         	
 
         }
-        public function reportar($id){
+        public function reportar($author,$body){
             $data = array(
                 'report' => "si");
-            $this->db->where('id',$id);
+            $this->db->where('author',$author);
+            $this->db->where('body',$body);
             $this->db->update('comments',$data);
         }
 
@@ -163,13 +164,13 @@ class Blog_model extends CI_Model {
             return $this->db->where('bann',"si")->get('users')->result();
         }
        
-       public function rm_ban($id){
+       public function rm_ban($user){
         $data = array(
             'bann'=>"no");
-        return $this->db->where('id',$id)->update('users',$data);
+        return $this->db->where('user',$user)->update('users',$data);
        }
        public function rm_user($id){
-        return $this->db->where('id',$id)->delete('users');
+        return $this->db->where('user',$user)->delete('users');
        }
         
     }
