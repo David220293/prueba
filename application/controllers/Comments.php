@@ -52,9 +52,9 @@ class Comments extends CI_Controller{
 	function comment_insert(){
 
 		$this->form_validation->set_rules('body', 'body', 'required');
-		
 		if ($this->form_validation->run() == TRUE)
         {
+        	$cuerpo = $this->input->post['body'];
         	$comment = array(
 	        'entry_id' => htmlspecialchars($this->input->post('entry_id')),
 	        'body' => htmlspecialchars($this->input->post('body')),
@@ -68,7 +68,9 @@ class Comments extends CI_Controller{
 	    
 
 
-		$this->mail->send('david@sandbox4f6e13b616174f8094191fd452882252.mailgun.org','davidemmanuel2202@gmail.com','prueba','probando mailgun','aksljdflakjdslksj');
+		$this->mail->send('david@sandbox4f6e13b616174f8094191fd452882252.mailgun.org','david_valdez22@hotmail.com','Nuevo comentarios',$comment['body']);
+	    	//$this->mail->log();
+		
 
 
 		redirect('comments/comments/'.$_POST['entry_id']);
@@ -77,7 +79,7 @@ class Comments extends CI_Controller{
         }else
 	         $this->session->set_flashdata('comfo','Completa el formulario'); 
 
-			redirect('comments/comments/'.$_POST['entry_id']);
+			//redirect('comments/comments/'.$_POST['entry_id']);
 
        
 
