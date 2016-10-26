@@ -11,8 +11,8 @@
 
 <?=form_open('login/login_check');?>
 
-<p>Usuario:<input type="text" name="user" value="<?php echo set_value('user'); ?>" required></p>
-<p>Contraseña:<input type="password" name="pass" value="<?php echo set_value('pass'); ?>" required></p>
+<p>Usuario:<input type="text" name="user" value="<?php echo set_value('user'); ?>" ></p>
+<p>Contraseña:<input type="password" name="pass" value="<?php echo set_value('pass'); ?>" ></p>
 <p><input type="submit" value="Iniciar"></p>
 </form>
       <h2><?php echo $this->session->flashdata('usfail'); ?></h2> 

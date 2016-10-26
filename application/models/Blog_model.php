@@ -88,6 +88,11 @@ class Blog_model extends CI_Model {
             $data = $this->db->get('comments');
             return $data->result();
         }
+        public function cont_commentsb(){
+            $this->db->where('report',"si");
+            return  $data = $this->db->get('comments')->num_rows;
+            
+        }
 
         public function delbann($cont){
             

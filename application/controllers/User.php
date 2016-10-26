@@ -25,8 +25,8 @@ class User extends CI_Controller{
 	function user_insert(){
 
 
-		$this->form_validation->set_rules('name', 'name', 'required');
-		$this->form_validation->set_rules('user', 'user', 'required');
+		$this->form_validation->set_rules('name', 'name', 'trim|required');
+		$this->form_validation->set_rules('user', 'user', 'trim|required');
 		$this->form_validation->set_rules('pass', 'pass', 'required|min_length[5]');
 		$this->form_validation->set_rules('passm', 'passm', 'required|matches[pass]|min_length[5]');
 		$this->form_validation->set_rules('email','email','valid_email|required');

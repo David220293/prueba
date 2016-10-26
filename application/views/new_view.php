@@ -15,7 +15,7 @@
 <?php echo form_open_multipart('entries/entries_insert');?>
 <p>Titulo:<input type="text" name="title"  value="<?php echo set_value('title'); ?>" placeholder="Titlo de la entrada" required></p>
 
-<p>Texto:<textarea name="body" rows="10"  value="" ></textarea></p>
+<p>Texto:<textarea name="body" rows="10"  value="<?php echo set_value('body'); ?>" ><?php echo set_value('body'); ?></textarea></p>
 <p>Selecciona una imagen:<input type="file" name="userfile" size="20"></p>
 
 

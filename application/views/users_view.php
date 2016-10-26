@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link rel="stylesheet" href="/assets/styles/stylei.css" type="text/css" />
+
 	<title></title>
 </head>
 <body>
@@ -14,7 +16,7 @@
 		<td>
 			<?=form_open('user/bann_up');?>
 			<?=form_hidden('user',$row->user);?>
-			<p><input type="submit" name="up" value="Disbann"><input type="submit" name="del" value="Eliminar"></p>
+			<p><input type="submit" name="up" value="Disbann"><input type="submit" name="del" value="Expulsar"></p>
 			</form>
 
 

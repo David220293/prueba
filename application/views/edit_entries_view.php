@@ -14,7 +14,7 @@
 
 <section>
 <div id="cabeza">
-<h1>Editar/Elimnar entradas</h1>
+<h1>Editar entrada</h1>
 </div>
 <div id="contenido">
 	
@@ -22,9 +22,9 @@
 <?php echo form_open_multipart('entries/update');?>
 
 
-<p>Title:<input type="text" name="title"  value="<?php echo $title; ?>"></p>
+<p>Title:<input type="text" name="title"  value="<?php echo $title; ?>" required></p>
 
-<p>Texto:<textarea name="body" rows="10"  value="" ><?php  echo $body; ?></textarea></p>
+<p>Texto:<textarea name="body" rows="10"  value="<?php  echo $body; ?>" required><?php  echo $body; ?></textarea></p>
 <input type="hidden" name="id" value="<?=$id?>">
 <p>Selecciona una imagen:<input type="file" name="userfile" size="20"></p>
 
@@ -35,7 +35,7 @@
     <h2><?php echo $this->session->flashdata('eupdfo'); ?></h2> 
 
 <?php else: ?>
-	<<?php echo "Acceso denegado" ?>
+	<?php echo "Acceso denegado" ?>
 <?php endif ?>
 
 </body>

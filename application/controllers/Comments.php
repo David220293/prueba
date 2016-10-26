@@ -21,6 +21,8 @@ class Comments extends CI_Controller{
 		$config['total_rows'] = $this->blog_model->num_comments($this->uri->segment(3));
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
+		$config['first_link'] = '<<';
+		$config['last_link'] = '>>';
 		$config['next_link'] = '>';
 		$config['prev_link'] = '<';
 		$data = $this->blog_model->entry_espec($this->uri->segment(3));
@@ -51,7 +53,7 @@ class Comments extends CI_Controller{
 
 	function comment_insert(){
 
-		$this->form_validation->set_rules('body', 'body', 'required');
+		$this->form_validation->set_rules('body', 'body', 'trim|required');
 		if ($this->form_validation->run() == TRUE)
         {
         	$cuerpo = $this->input->post['body'];
@@ -76,23 +78,28 @@ class Comments extends CI_Controller{
 		redirect('comments/comments/'.$_POST['entry_id']);
 
 
-        }else
+        }else{
 	         $this->session->set_flashdata('comfo','Completa el formulario'); 
 
-			//redirect('comments/comments/'.$_POST['entry_id']);
+			redirect('comments/comments/'.$_POST['entry_id']);
 
-       
+       }
 
 
 	
 	}
 	public function bann_view(){
+		
+
 		$datos = array(
 			'comments'=> $this->blog_model->get_commentsb()
 			);
 		
 		$this->load->view('bann_view',$datos);
 	}
+
+
+
 	public function bann(){
 		$cont = $this->input->post('cont');
 		$user = $this->input->post('user');

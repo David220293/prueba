@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link rel="stylesheet" href="/assets/styles/stylei.css" type="text/css" />
+
 	<title></title>
 </head>
 <body>
@@ -17,6 +19,7 @@
 	
 		<hr>
 		<?php endforeach;?>
+
 	<?php else: ?>
 		<?php echo "acceso denegado" ?>
 	<?php endif ?>

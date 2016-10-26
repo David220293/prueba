@@ -26,7 +26,8 @@ class Entries extends CI_Controller{
 		$config['total_rows'] = $this->blog_model->num_entries();
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
-	
+		$config['first_link'] = '<<';
+		$config['last_link'] = '>>';
 		$config['next_link'] = '>';
 		$config['prev_link'] = '<';
 
@@ -59,8 +60,8 @@ class Entries extends CI_Controller{
 		
 	}
 	public function update(){
-		$this->form_validation->set_rules('title', 'title', 'required');
-	 	$this->form_validation->set_rules('body', 'body', 'required');
+		$this->form_validation->set_rules('title', 'title', 'trim|required');
+	 	$this->form_validation->set_rules('body', 'body', 'trim|required');
 
 			 	if ($this->form_validation->run()==true) {
 
@@ -102,8 +103,8 @@ class Entries extends CI_Controller{
 	/*Se realiza la incersion de los datos que fueron ingresados en la vista de new_view enviados al model blog_model*/
 	function entries_insert(){
 		
-        $this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('body', 'body', 'required');
+        $this->form_validation->set_rules('title', 'title', 'trim|required');
+		$this->form_validation->set_rules('body', 'body', 'trim|required');
 		
 
 		if ($this->form_validation->run() == TRUE)

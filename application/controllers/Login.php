@@ -17,7 +17,7 @@ class Login extends CI_Controller{
 	function login_check(){
 
 
-		$this->form_validation->set_rules('user', 'user', 'required');
+		$this->form_validation->set_rules('user', 'user', 'trim|required');
 		$this->form_validation->set_rules('pass', 'pass', 'required');
 
 
@@ -45,7 +45,7 @@ class Login extends CI_Controller{
             	echo "<script language='javascript'> parent.location.reload(); </script>";
 
 				}else{
-		         	$this->session->set_flashdata('passfail','Contraseña equivocada'); 
+		         	$this->session->set_flashdata('passfail','Contraseña incorrecta'); 
  					redirect('login/login_view');
 
 

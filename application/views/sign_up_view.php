@@ -12,12 +12,12 @@
 <?php echo validation_errors(); ?>
 <?=form_open('user/user_insert');?>
 
-<p>Nombre:<input type="text" name="name" value="<?php echo set_value('name'); ?>" ></p>
-<p>Usuario:<input type="text" name="user" value="<?php echo set_value('user'); ?>" ></p>
-<p>Contraseña:<input type="password" name="pass" value="<?php echo set_value('pass'); ?>" ></p>
-<p>Repite contraseña:<input type="password" name="passm" value="<?php echo set_value('passm'); ?>" ></p>
+<p>Nombre:<input type="text" name="name" value="<?php echo set_value('name'); ?>" required ></p>
+<p>Usuario:<input type="text" name="user" value="<?php echo set_value('user'); ?>" required></p>
+<p>Contraseña:<input type="password" name="pass" value="<?php echo set_value('pass'); ?>" required></p>
+<p>Repite contraseña:<input type="password" name="passm" value="<?php echo set_value('passm'); ?>" required></p>
 
-<p>Email:<input type="text" name="email" value="<?php echo set_value('email'); ?>" ></p>
+<p>Email:<input type="text" name="email" value="<?php echo set_value('email'); ?>" required></p>
 
 <p><input type="submit" value="Registrarse"></p>
 </form>
