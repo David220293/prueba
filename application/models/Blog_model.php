@@ -3,61 +3,98 @@ class Blog_model extends CI_Model {
         
 
         public function num_entries(){
-            return $this->db->get('entries')->num_rows();
+            try {
+                return $this->db->get('entries')->num_rows();
+            } catch (Exception $e) {
+                echo "error al contar el numero de entradas";
+            }
         }
 
 
         public function get_entries($per_page){
-              $this->db->order_by('dat DESC');
+            try {
+                 $this->db->order_by('dat DESC');
               $datos= $this->db->get('entries',$per_page, $this->uri->segment(3));
               return $datos->result();
+            } catch (Exception $e) {
+                echo "Error al hacer la consulta de las entradas";
+            }
+             
         }
 
         public function entry_espec($id){
-            $this->db->select('*');
-            $this->db->from('entries');
-            $this->db->where('id',$id);
-            $query = $this->db->get();
-            $resu = $query->row();
-            return $resu;
+            try {
+                 $this->db->select('*');
+                $this->db->from('entries');
+                $this->db->where('id',$id);
+                $query = $this->db->get();
+                $resu = $query->row();
+                return $resu;
+            } catch (Exception $e) {
+                echo "Error al traer la entrada del post";
+            }
+           
 
         }
 
         // cehcar para hacerlo por medio del cuerpo.
         public function del_entri($fecha){
-           $this->db->where('dat',$fecha);
+            try {
+                 $this->db->where('dat',$fecha);
             return $this->db->delete('entries');
+            } catch (Exception $e) {
+                echo "no se elimino la entrada";
+            }
+          
         }
 
 
 
         public function insert_entries($table, $data){
-            return $this->db->insert($table, $data);
+            try {
+               return $this->db->insert($table, $data); 
+            } catch (Exception $e) {
+                echo "No se inserto la entrada";
+            }
         }
 
          public function update_entries($id,$title,$body,$filename)
-        {
-            $data = array(
+        {try {
+             $data = array(
             'title' =>$title,
             'body' => $body,
             'filename' =>$filename        );
         $this->db->where('id', $id);
         return $this->db->update('entries', $data);
+        } catch (Exception $e) {
+            echo "error al actualizar la entrada";
+        }
+           
 
         }
         public function delete_entries($id){
-            $this->db->where('id',$id);
+            try {
+                 $this->db->where('id',$id);
             return $this->db->delete('entries');
+            } catch (Exception $e) {
+                echo "Error al eliminar la entrada";
+            }
+           
         }
 
         public function call_entrie($fecha){
-            $this->db->select('*');
-            $this->db->from('entries');
-            //$this->db->where('title',$titulo);
-            $this->db->where('dat',$fecha);
-            $query = $this->db->get();
-            $fila = $query->row();
-            return $fila;
+            try {
+                $this->db->select('*');
+                $this->db->from('entries');
+                //$this->db->where('title',$titulo);
+                $this->db->where('dat',$fecha);
+                $query = $this->db->get();
+                $fila = $query->row();
+                return $fila; 
+            } catch (Exception $e) {
+                echo "Error al traer la informacion de la entrada especifica";
+            }
+           
 
         }
 
@@ -68,46 +105,78 @@ class Blog_model extends CI_Model {
 
 
         public function num_comments($entri){
-            $this->db->where('entry_id',$entri);
+            try {
+                  $this->db->where('entry_id',$entri);
             $this->db->where('report !=',"si");
             return $this->db->get('comments')->num_rows();
+            } catch (Exception $e) {
+                echo "Error al contar los comentarios";
+            }
+          
         }
 
         public function get_comments($per_page){
-
-        	$this->db->where('entry_id', $this->uri->segment(3));
+            try {
+                $this->db->where('entry_id', $this->uri->segment(3));
             $this->db->where('report !=',"si");
-        	$this->db->order_by('dat DESC');
-			$data = $this->db->get('comments',$per_page, $this->uri->segment(4));
+            $this->db->order_by('dat DESC');
+            $data = $this->db->get('comments',$per_page, $this->uri->segment(4));
             return $data->result();
+            } catch (Exception $e) {
+                echo "Error al mostrar los comentarios";
+            }
+        	
         }
 
         public function get_commentsb(){
-            $this->db->where('report',"si");
+            try {
+                  $this->db->where('report',"si");
             $this->db->order_by('author DESC');
             $data = $this->db->get('comments');
             return $data->result();
+            } catch (Exception $e) {
+               echo "error al mostrar los comentarios baneados"; 
+            }
+          
         }
         public function cont_commentsb(){
-            $this->db->where('report',"si");
-            return  $data = $this->db->get('comments')->num_rows;
+            try {
+              $this->db->where('report',"si");
+            return  $data = $this->db->get('comments')->num_rows; 
+            } catch (Exception $e) {
+                echo "Error al contar los comentarios baneados";
+            }
+            
             
         }
 
         public function delbann($cont){
-            
-            return $this->db->where('body',$cont)->delete('comments');
+            try {
+                return $this->db->where('body',$cont)->delete('comments');
+            } catch (Exception $e) {
+                echo "Error al eleminiar el comentario baneado";
+            }
         }
         public function updbann($cont){
-            $report = array(
+            try {
+                  $report = array(
                 'report'=> "no");
             return $this->db->where('body',$cont)->update('comments',$report);
 
+            } catch (Exception $e) {
+                echo "Error al quitar el banneo del comentario";
+            }
+          
         }
         public function bannuser($user){
-            $datos = array(
+            try {
+                $datos = array(
                 'bann'=>"si");
-            return $this->db->where('user',$user)->update('users',$datos);
+            return $this->db->where('user',$user)->update('users',$datos); 
+            } catch (Exception $e) {
+                echo "Error al bannear al usuario";
+            }
+           
         }
 
       /*  public function get_comment($per_page){
@@ -117,7 +186,11 @@ class Blog_model extends CI_Model {
 
         }*/
         public function insert_comments($table,$data){
-        	return $this->db->insert($table,$data);
+            try {
+                return $this->db->insert($table,$data);  
+            } catch (Exception $e) {
+                echo "Error al insertar el comentario";
+            }
         }
        // public function delete_comments($id){
          //   $this->db->where('id',$id);
@@ -129,63 +202,105 @@ class Blog_model extends CI_Model {
 
 //registro de usuario
         public function check_user_ex($user,$mail){
-            $this->db->from('users');
+            try {
+                 $this->db->from('users');
             $this->db->where('user',$user);
             $this->db->or_where('email',$mail);
             $data = $this->db->get();
-            if($data->num_rows() > 0){
-                return false;
-            }else{
-                return true;
+                if($data->num_rows() > 0){
+                    return false;
+                }else{
+                    return true;
+                }
+            } catch (Exception $e) {
+               echo "Error al checar registros duplicados"; 
             }
+           
         }
 
         public function insert_user($table,$data){
-        	return $this->db->insert($table,$data);
+            try {
+                return $this->db->insert($table,$data);
+            } catch (Exception $e) {
+                echo "Error al insertar el usuario";
+            }
         }
 
         public function logeous($user){
-        	$this->db->select('*');
-        	$this->db->from('users');
-        	$this->db->where('user',$user);
-        	$query = $this->db->get();
+            try {
+                $this->db->select('*');
+            $this->db->from('users');
+            $this->db->where('user',$user);
+            $query = $this->db->get();
             $resu = $query->row();
             return $resu;
+            } catch (Exception $e) {
+                echo "Error al hacer el match de logeo";
+            }
+        	
         	
 
         }
         public function reportar($author,$body){
-            $data = array(
+            try {
+                  $data = array(
                 'report' => "si");
             $this->db->where('author',$author);
             $this->db->where('body',$body);
             $this->db->update('comments',$data);
+            } catch (Exception $e) {
+                echo "Error al reportar el comentario";
+            }
+          
         }
 
 
 
 
         public function get_users(){
-            return $this->db->where('bann',"si")->get('users')->result();
+            try {
+              return $this->db->where('bann',"si")->get('users')->result();  
+            } catch (Exception $e) {
+                echo "Error al mostrar los usuarios";
+            }
         }
        
        public function rm_ban($user){
-        $data = array(
+        try {
+             $data = array(
             'bann'=>"no");
         return $this->db->where('user',$user)->update('users',$data);
+        } catch (Exception $e) {
+            echo "Error al quitar el banneo";
+        }
+       
        }
        public function rm_user($user){
-        return $this->db->where('user',$user)->delete('users');
+        try {
+            return $this->db->where('user',$user)->delete('users');
+        } catch (Exception $e) {
+            echo "Error al Expulsar usuario";
+        }
        }
 
        public function get_usersa(){
-        $this->db->where('type_user',"user");
+        try {
+             $this->db->where('type_user',"user");
         return $this->db->get('users')->result();
+        } catch (Exception $e) {
+            echo "Error al traer a los usuarios";
+        }
+       
        }
        public function user_admin($user){
-        $data = array(
+        try {
+             $data = array(
             'type_user' => "admin");
         return $this->db->where('user',$user)->update('users',$data);
+        } catch (Exception $e) {
+           echo "Error al actualizar a los usuarios para ser administrador"; 
+        }
+       
        }
         
     }

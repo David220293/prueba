@@ -35,6 +35,8 @@
 
 <p><input type="submit" value="Enviar comentario"></p>
 </form>
+
+    <h2><?php echo $this->session->flashdata('errinscom'); ?></h2> 
     <h2><?php echo $this->session->flashdata('inscom'); ?></h2> 
 	<h2><?php echo $this->session->flashdata('comfo'); ?></h2> 
     <h2><?php echo $this->session->flashdata('comban'); ?></h2> 

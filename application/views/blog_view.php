@@ -20,6 +20,7 @@
 		<li><h5><a href="<?=site_url('entries/new_entry');?>" target="cont">Nueva entrada</a></h5></li>
 		<li><h5><a href="<?=site_url('comments/bann_view');?>" target="cont">Reportados</a></h5></li>
 		<li><h5><a href="<?=site_url('user/bann_users');?>" target="cont">Usuarios baneados</a></h5></li>
+		<li><h5><a href="<?=site_url('user/admin');?>" target="cont">Hacer admin</a></h5></li>
 
 
 	<?php endif ?>
