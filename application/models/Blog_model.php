@@ -4,7 +4,12 @@ class Blog_model extends CI_Model {
 
         public function num_entries(){
             try {
-                return $this->db->get('entries')->num_rows();
+                $data = $this->db->get('entries')->num_rows();
+                if($data>0){
+                    return $data;
+                }else{
+                    return false;
+                }
             } catch (Exception $e) {
                 echo "error al contar el numero de entradas";
             }
@@ -106,9 +111,15 @@ class Blog_model extends CI_Model {
 
         public function num_comments($entri){
             try {
-                  $this->db->where('entry_id',$entri);
+                 $this->db->where('entry_id',$entri);
             $this->db->where('report !=',"si");
-            return $this->db->get('comments')->num_rows();
+            $data = $this->db->get('comments')->num_rows();
+                if ($data>0) {
+                    return $data;
+                }else{
+                    return false;
+                }
+            
             } catch (Exception $e) {
                 echo "Error al contar los comentarios";
             }
@@ -141,13 +152,48 @@ class Blog_model extends CI_Model {
         }
         public function cont_commentsb(){
             try {
-              $this->db->where('report',"si");
-            return  $data = $this->db->get('comments')->num_rows; 
+                $this->db->where('report',"si");
+                $data = $this->db->get('comments')->num_rows;
+                if ($data>0) {
+                    return $data;
+                }else{
+                    return false;
+                }
+
             } catch (Exception $e) {
                 echo "Error al contar los comentarios baneados";
             }
             
             
+        }
+
+        public function con_usera(){
+            try {
+                $this->db->where('type_user',"user");
+                $data = $this->db->get('users')->num_rows;
+                if ($data>0) {
+                    return $data;
+                }else{
+                    return false;
+                }
+
+            } catch (Exception $e) {
+                echo "Error al contar los comentarios baneados";
+            }
+        }
+
+        public function cont_user_ban(){
+            try {
+                $this->db->where('bann','si');
+                $data = $this->db->get('users')->num_rows;
+                if($data>0){
+                    return $data;
+                }else{
+                    return false;
+                }
+            } catch (Exception $e) {
+                
+            }
         }
 
         public function delbann($cont){

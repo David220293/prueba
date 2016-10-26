@@ -30,7 +30,7 @@
 <?php endforeach?>
 
 </table>
-
+    <h2><?php echo $this->session->flashdata('noresulus'); ?></h2> 
     <h2><?php echo $this->session->flashdata('ban'); ?></h2> 
 
 <?php else: ?>

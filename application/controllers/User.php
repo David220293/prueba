@@ -48,21 +48,7 @@ class User extends CI_Controller{
 				redirect('user/new_user');
         	}else{
 
-        		$len = strlen($pass);
-        		$valid=false;
-        		for ($i=0; $i <$len ; $i++) { 
-        			$char = substr($pass, $i);
-
-
-					if($char=="!" or $char =="#" or $char=="$" or $char=="%" or $char=="&" or $char=="/" or $char=="(" or $char==")" or $char=="=" or $char=="?" or $char=="¿" or $char=="¡" or $char=="|" or $char=="-" or $char=="_" or $char=="°" or $char=="+" or $char=="*" or $char=="{" or $char=="}" or $char=="." or $char==":" or $char==";" or $char=="," or $char=="@" or $char=="¬" or $char=="'" or $char=="¸" or $char=="~" or $char=="´" or $char=="¨" or $char=="^" or $char=="`" or $char=="·" or $char=="`" or $char=="\"" or $char=="\'" or $char=="·" or $char=="½" or $char=="[" or $char=="]" or $char=="̣" ){
-
-
-        				$valid = true;
-
-        			}
-       		
-            	//echo "<script language='javascript'> parent.location.reload(); </script>";
-        	}
+        		valid_char($pass);
         	if($valid == true){
         		$users = array(
 				        'user' => htmlspecialchars($this->input->post('user')),
@@ -100,6 +86,11 @@ class User extends CI_Controller{
 
 
 	public function bann_users(){
+		$datos = $this->blog_model->cont_user_ban();
+
+		if ($datos==false) {
+ 			$this->session->set_flashdata('noresulus','No hay usuarios baneados'); 
+		}
 		$data= array(
 				'users' => $this->blog_model->get_users()
 			);
@@ -107,6 +98,10 @@ class User extends CI_Controller{
 	}
 
 	public function admin(){
+		$datos = $this->blog_model->con_usera();
+		if($datos==false){
+ 			$this->session->set_flashdata('nous','No hay usuarios'); 
+		}
 		$data = array(
 			'users' => $this->blog_model->get_usersa());
 		$this->load->view('usuario', $data);

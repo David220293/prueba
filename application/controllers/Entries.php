@@ -22,8 +22,10 @@ class Entries extends CI_Controller{
 
 	}
 	function entri(){
-		$config['base_url'] = base_url().'entries/entri/';
-		$config['total_rows'] = $this->blog_model->num_entries();
+		$datos = $this->blog_model->num_entries();
+		if ($datos!=false) {
+			$config['base_url'] = base_url().'entries/entri/';
+		$config['total_rows'] = 
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
 		$config['first_link'] = '<<';
@@ -38,6 +40,10 @@ class Entries extends CI_Controller{
 			);
 
 		$this->load->view('entries_view',$data);
+		}else{
+			echo "No hay entradas";
+		}
+		
 	}
 
 	

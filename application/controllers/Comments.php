@@ -15,10 +15,13 @@ class Comments extends CI_Controller{
 
 	public function comments(){
 
-
+		$datos = $this->blog_model->num_comments($this->uri->segment(3));
+		if ($datos==false) {
+           $this->session->set_flashdata('noresult','No hay comentarios'); 
+		}
 
 		$config['base_url'] = base_url().'comments/comments/'.$this->uri->segment(3);
-		$config['total_rows'] = $this->blog_model->num_comments($this->uri->segment(3));
+		$config['total_rows'] = $datos;
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
 		$config['first_link'] = '<<';
@@ -92,9 +95,14 @@ class Comments extends CI_Controller{
 	public function bann_view(){
 		
 
+			# code...
+		
 		$datos = array(
 			'comments'=> $this->blog_model->get_commentsb()
 			);
+		if ($datos['comments']== false) {
+         $this->session->set_flashdata('noresulban',"No hay comentarios baneados"); 
+		}
 		
 		$this->load->view('bann_view',$datos);
 	}
@@ -104,6 +112,7 @@ class Comments extends CI_Controller{
 	public function bann(){
 		$cont = $this->input->post('cont');
 		$user = $this->input->post('user');
+		
 		if (isset($_POST['del'])) {
  			$this->session->set_flashdata('banc','Comentario elminado'); 
 			$this->blog_model->delbann($cont);

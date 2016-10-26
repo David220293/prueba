@@ -41,6 +41,7 @@
 	<h2><?php echo $this->session->flashdata('comfo'); ?></h2> 
     <h2><?php echo $this->session->flashdata('comban'); ?></h2> 
     <h2><?php echo $this->session->flashdata('errcom'); ?></h2> 
+    <h2><?php echo $this->session->flashdata('noresult'); ?></h2> 
 
 <?php else: ?>
 	<p>Tú cuenta ha sido banneada en unos días se normalizará bajo adevertencia</p> 
