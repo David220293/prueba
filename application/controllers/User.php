@@ -52,7 +52,9 @@ class User extends CI_Controller{
         		$valid=false;
         		for ($i=0; $i <$len ; $i++) { 
         			$char = substr($pass, $i);
-        			if($char=="!" or $char =="#" or $char=="$" or $char=="%" or $char=="&" or $char=="/" or $char=="(" or $char==")" or $char=="=" or $char=="?" or $char=="¿" or $char=="¡" or $char=="|" or $char=="-" or $char=="_" or $char=="°" or $char=="+" or $char=="*" or $char=="{" or $char=="}" or $char=="." or $char==":" or $char==";" or $char==","){
+
+
+					if($char=="!" or $char =="#" or $char=="$" or $char=="%" or $char=="&" or $char=="/" or $char=="(" or $char==")" or $char=="=" or $char=="?" or $char=="¿" or $char=="¡" or $char=="|" or $char=="-" or $char=="_" or $char=="°" or $char=="+" or $char=="*" or $char=="{" or $char=="}" or $char=="." or $char==":" or $char==";" or $char=="," or $char=="@" or $char=="¬" or $char=="'" or $char=="¸" or $char=="~" or $char=="´" or $char=="¨" or $char=="^" or $char=="`" or $char=="·" or $char=="`" or $char=="\"" or $char=="\'" or $char=="·" or $char=="½" or $char=="[" or $char=="]" or $char=="̣" ){
 
 
         				$valid = true;
@@ -72,7 +74,8 @@ class User extends CI_Controller{
         				);  
 	        		$this->blog_model->insert_user('users', $users);
 	         		$this->session->set_flashdata('reins','Registro exitoso'); 
-					echo "<script language='javascript'> parent.location.reload(); </script>";
+	         		redirect('user/new_user');
+					//echo "<script language='javascript'> parent.location.reload(); </script>";
 					
 	        		}else {
          				$this->session->set_flashdata('reca','Agrega caracteres especiales a tu contraseña'); 
@@ -88,7 +91,8 @@ class User extends CI_Controller{
 		
 
 	}else{
-         $this->session->set_flashdata('refor','Completa correctamente el formulario'); 
+		$error = validation_errors();
+         $this->session->set_flashdata('refor',$error); 
 		redirect('user/new_user');
 
 	}
@@ -102,14 +106,30 @@ class User extends CI_Controller{
 		$this->load->view('users_view',$data);
 	}
 
+	public function admin(){
+		$data = array(
+			'users' => $this->blog_model->get_usersa());
+		$this->load->view('usuario', $data);
+	}
+	public function admin_up(){
+		$user = $this->input->post('user');
+		$this->blog_model->user_admin($user);
+		$this->session->set_flashdata('admup','Se a actualizado el permiso'); 
+		redirect('user/admin');
+	}
+
 	public function bann_up(){
 		$user = $this->input->post('user');
 		if (isset($_POST['up'])) {
+			$this->session->set_flashdata('ban','Se quito el banneo'); 
 			$this->session->set_userdata('bann', "no");
 			$this->blog_model->rm_ban($user);			
 		}else{
+			$this->session->set_flashdata('ban','Se ha explusado al usuario'); 
 			$this->blog_model->rm_user($user);
 		}
+		redirect('user/bann_users');
+
 	}
 
 }

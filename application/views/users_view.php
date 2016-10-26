@@ -6,6 +6,8 @@
 	<title></title>
 </head>
 <body>
+<?php if ($this->session->userdata('login')==TRUE): ?>
+
 <table>
 <?php foreach($users as $row): ?>
 
@@ -28,5 +30,11 @@
 <?php endforeach?>
 
 </table>
+
+    <h2><?php echo $this->session->flashdata('ban'); ?></h2> 
+
+<?php else: ?>
+	<?php echo "Acceso denegado" ?>
+<?php endif ?>
 </body>
 </html>

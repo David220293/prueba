@@ -58,7 +58,8 @@ class Login extends CI_Controller{
 			
 			}
 		}else{
-	         $this->session->set_flashdata('usfo','Completa los campos'); 
+			$error = validation_errors();
+         	$this->session->set_flashdata('err',$error); 
 			redirect('login/login_view');
 
 		}

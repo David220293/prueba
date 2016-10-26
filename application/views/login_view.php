@@ -18,6 +18,7 @@
       <h2><?php echo $this->session->flashdata('usfail'); ?></h2> 
       <h2><?php echo $this->session->flashdata('usfo'); ?></h2> 
       <h2><?php echo $this->session->flashdata('passfail'); ?></h2> 
+      <h2><?php echo $this->session->flashdata('err'); ?></h2> 
 
 
 </body>

@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link rel="stylesheet" href="/assets/styles/stylei.css" type="text/css" />
+
 	<title></title>
 </head>
 <body>
-
 <?php if ($this->session->userdata('login')==TRUE): ?>
-	
 
-<section>
-<div id="cabeza">
-<h1>Datos del usuario</h1>
-</div>
-<div id="contenido">
-	
-	<?php echo validation_errors(); ?>
+<table>
+<?php foreach($users as $row): ?>
 
-<?=form_open('usuario/update');?>
+	<tr>
+		<td><?=$row->name?></td>
+		<td><?=$row->user?></td>
+		<td><?=$row->email?></td>
+		<td>
+			<?=form_open('user/admin_up');?>
+			<?=form_hidden('user',$row->user);?>
+			<p><input type="submit" name="admin" value="Admin"></p>
+			</form>
 
-<p>Title:<input type="text" name="title"  value="<?php echo $title; ?>"></p>
 
-<p>Texto:<textarea name="body" rows="10"  value="" ><?php  echo $body; ?></textarea></p>
-<input type="hidden" name="id" value="<?=$id?>">
 
-<p> <input type="submit" name="actualizar" value="Actualizar"> </p>
+		</td>
 
-</form>
-   <!-- <h2><?php echo $this->session->flashdata('entupd'); ?></h2> 
-    <h2><?php echo $this->session->flashdata('eupdfo'); ?></h2> -->
+	</tr>
+
+<?php endforeach?>
+
+</table>
+        <h2><?php echo $this->session->flashdata('admup'); ?></h2> 
 
 <?php else: ?>
-	<<?php echo "Acceso denegado" ?>
+	<?php echo "Acceso denegado" ?>
 <?php endif ?>
-
 </body>
 </html>

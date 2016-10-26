@@ -21,7 +21,10 @@
   	    <h2><?php echo $this->session->flashdata('reins'); ?></h2> 
 		<h2><?php echo $this->session->flashdata('siup'); ?></h2> 
       	<h2><?php echo $this->session->flashdata('noup'); ?></h2> 
-
+<h2><?php echo $this->session->flashdata('reins'); ?></h2> 
+        <h2><?php echo $this->session->flashdata('errupd'); ?></h2> 
+         <h2><?php echo $this->session->flashdata('reins'); ?></h2> 
+        <h2><?php echo $this->session->flashdata('errupd'); ?></h2> 
 
 <?php foreach($entries as $row): ?>
 <h3><?=$row->title;?></h3>

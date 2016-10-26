@@ -174,8 +174,18 @@ class Blog_model extends CI_Model {
             'bann'=>"no");
         return $this->db->where('user',$user)->update('users',$data);
        }
-       public function rm_user($id){
+       public function rm_user($user){
         return $this->db->where('user',$user)->delete('users');
+       }
+
+       public function get_usersa(){
+        $this->db->where('type_user',"user");
+        return $this->db->get('users')->result();
+       }
+       public function user_admin($user){
+        $data = array(
+            'type_user' => "admin");
+        return $this->db->where('user',$user)->update('users',$data);
        }
         
     }

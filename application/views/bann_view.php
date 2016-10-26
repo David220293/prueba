@@ -19,6 +19,7 @@
 	
 		<hr>
 		<?php endforeach;?>
+        <h2><?php echo $this->session->flashdata('banc'); ?></h2> 
 
 	<?php else: ?>
 		<?php echo "acceso denegado" ?>

@@ -18,13 +18,12 @@
 </div>
 <div id="contenido">
 	
-	<?php echo validation_errors(); ?>
 <?php echo form_open_multipart('entries/update');?>
 
 
 <p>Title:<input type="text" name="title"  value="<?php echo $title; ?>" required></p>
 
-<p>Texto:<textarea name="body" rows="10"  value="<?php  echo $body; ?>" required><?php  echo $body; ?></textarea></p>
+<p>Texto:<textarea name="body" rows="10"  value="" required><?php  echo $body; ?></textarea></p>
 <input type="hidden" name="id" value="<?=$id?>">
 <p>Selecciona una imagen:<input type="file" name="userfile" size="20"></p>
 
@@ -33,6 +32,7 @@
 </form>
     <h2><?php echo $this->session->flashdata('entupd'); ?></h2> 
     <h2><?php echo $this->session->flashdata('eupdfo'); ?></h2> 
+    <h2><?php echo $this->session->flashdata('errupd'); ?></h2> 
 
 <?php else: ?>
 	<?php echo "Acceso denegado" ?>

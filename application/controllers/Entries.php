@@ -95,7 +95,8 @@ class Entries extends CI_Controller{
 			 		redirect('entries/entri');
 
 			 	}else{
-         			$this->session->set_flashdata('eupdfo','Llena correctamente los campos'); 
+					$error = validation_errors();
+        			$this->session->set_flashdata('errupd',$error); 
 			 		redirect('entries/entri');
 			 	}
 	}
@@ -139,7 +140,8 @@ class Entries extends CI_Controller{
             	echo "<script language='javascript'> parent.location.reload(); </script>";
 
 		}else{
-         	$this->session->set_flashdata('val','Completa todos los campos'); 
+			$error = validation_errors();
+        	$this->session->set_flashdata('erren',$error); 
             redirect('entries/new_entry');
 
 		}

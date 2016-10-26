@@ -10,7 +10,7 @@ body{
 #navi ul{
 	float: right;
 
-	width: 550px;
+	width: 700px;
 	height: 50px;
 	
 	margin-top: -10px;
@@ -52,7 +52,7 @@ iframe{
 p{
 	color: #B09055;
 }
-h3,h4,h2{
+h3,h4{
 	color: #755D31;
 }
 h1{
@@ -60,4 +60,7 @@ h1{
 }
 tr,td{
 	color: #755D31;
+}
+h2{
+	color: red;
 }

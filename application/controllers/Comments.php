@@ -71,7 +71,6 @@ class Comments extends CI_Controller{
 
 
 		$this->mail->send('david@sandbox4f6e13b616174f8094191fd452882252.mailgun.org','david_valdez22@hotmail.com','Nuevo comentarios',$comment['body']);
-	    	//$this->mail->log();
 		
 
 
@@ -79,7 +78,9 @@ class Comments extends CI_Controller{
 
 
         }else{
-	         $this->session->set_flashdata('comfo','Completa el formulario'); 
+
+	         $error = validation_errors();
+         $this->session->set_flashdata('errcom',$error); 
 
 			redirect('comments/comments/'.$_POST['entry_id']);
 
@@ -104,11 +105,14 @@ class Comments extends CI_Controller{
 		$cont = $this->input->post('cont');
 		$user = $this->input->post('user');
 		if (isset($_POST['del'])) {
+ 			$this->session->set_flashdata('banc','Comentario elminado'); 
 			$this->blog_model->delbann($cont);
 			# code...
 		}elseif(isset($_POST['rest'])){
+ 			$this->session->set_flashdata('banc','Comentario restaurado'); 
 			$this->blog_model->updbann($cont);
 		}else{
+ 			$this->session->set_flashdata('banc','Usuario baneado'); 
 			$this->session->set_userdata('bann', "si");
 			$this->blog_model->bannuser($user);
 		}

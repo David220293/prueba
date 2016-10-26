@@ -24,7 +24,8 @@
 </form>
       <h2><?php echo $this->session->flashdata('ins'); ?></h2> 
       <h2><?php echo $this->session->flashdata('val'); ?></h2> 
-     
+       <h2><?php echo $this->session->flashdata('erren'); ?></h2> 
+    
 
 
 <?php else: ?>

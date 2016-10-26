@@ -9,7 +9,6 @@
 
 <h1>Registrate</h1>
 
-<?php echo validation_errors(); ?>
 <?=form_open('user/user_insert');?>
 
 <p>Nombre:<input type="text" name="name" value="<?php echo set_value('name'); ?>" required ></p>
@@ -24,6 +23,8 @@
       <h2><?php echo $this->session->flashdata('refor'); ?></h2> 
       <h2><?php echo $this->session->flashdata('redu'); ?></h2> 
       <h2><?php echo $this->session->flashdata('reca'); ?></h2> 
+            <h2><?php echo $this->session->flashdata('reins'); ?></h2> 
+
 
 
 
