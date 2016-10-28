@@ -9,6 +9,7 @@ if(!function_exists('add_car'))
  
                 $len = strlen($pass);
                 $valid=false;
+                
                 for ($i=0; $i <$len ; $i++) { 
                     $char = substr($pass, $i);
 

@@ -68,6 +68,7 @@ class Entries extends CI_Controller{
 	public function update(){
 		$this->form_validation->set_rules('title', 'title', 'trim|required');
 	 	$this->form_validation->set_rules('body', 'body', 'trim|required');
+			$this->lang->idioma();
 
 			 	if ($this->form_validation->run()==true) {
 
@@ -112,7 +113,8 @@ class Entries extends CI_Controller{
 		
         $this->form_validation->set_rules('title', 'title', 'trim|required');
 		$this->form_validation->set_rules('body', 'body', 'trim|required');
-		
+					$this->lang->idioma();
+
 
 		if ($this->form_validation->run() == TRUE)
         {	

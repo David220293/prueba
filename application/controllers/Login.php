@@ -15,7 +15,8 @@ class Login extends CI_Controller{
 
 	// se hace el check del tipo de usuario que se esta logeando user, admin, suadmin
 	function login_check(){
-
+					//$this->lang->load('form_validation','spanish');
+                	//$this->config->set_item('language','spanish');
 
 		$this->form_validation->set_rules('user', 'user', 'trim|required');
 		$this->form_validation->set_rules('pass', 'pass', 'required');
@@ -37,10 +38,14 @@ class Login extends CI_Controller{
 					'name'=>$data->name,
 					'type_user' => $data->type_user,
 					'login' => true,
-					'bann'=> $data->bann
+					'bann'=> $data->bann,
+					'idioma' => $data->lang
 					);
             	$this->session->set_userdata($user_data);
-		         $this->session->set_flashdata('bien','Bienvenido.'.$user_data['name']); 
+
+            
+               
+
 
             	echo "<script language='javascript'> parent.location.reload(); </script>";
 
@@ -62,6 +67,20 @@ class Login extends CI_Controller{
          	$this->session->set_flashdata('err',$error); 
 			redirect('login/login_view');
 
+		}
+
+
+		function lenguage(){
+
+			$idi = "";
+			 if ($this->session->userdata('idioma')=="Español") {
+			 		$idi = "Español";
+                	return $idi;
+                	
+                }else{
+                	$idi = "English";
+                	return $idi;
+                }
 		}
 
 

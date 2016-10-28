@@ -35,6 +35,26 @@ class Blog extends CI_Controller{
 
 
 	}
+
+	function idiomas()
+	{
+
+		$CI =& get_instance();
+
+		$lang = $CI->session->userdata('idioma');
+
+		if(emptyempty($lang))
+
+		{
+
+		$lang = "spanish";
+
+		$CI->session->set_userdata(array('idioma'=>'spanish'));               
+
+		}
+
+
+	}	
 	function close(){
 		$this->session->sess_destroy();
 		redirect('blog');

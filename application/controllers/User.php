@@ -23,32 +23,41 @@ class User extends CI_Controller{
 
 
 	function user_insert(){
-
-
 		$this->form_validation->set_rules('name', 'name', 'trim|required');
 		$this->form_validation->set_rules('user', 'user', 'trim|required');
 		$this->form_validation->set_rules('pass', 'pass', 'required|min_length[5]');
 		$this->form_validation->set_rules('passm', 'passm', 'required|matches[pass]|min_length[5]');
 		$this->form_validation->set_rules('email','email','valid_email|required');
-
 		
 		if ($this->form_validation->run() == TRUE)
    		{		
-
     		//$usuario = $this->input->post('user');
 			//$mail = $this->input->post('email');
 			$user = $this->input->post('user');
 			$mail = $this->input->post('email');
 			$pass = $this->input->post('pass');
+			$idioma ="";
+			if ($_POST['idioma'] =="Ingles") {
+				$idioma = "Ingles";
+			}else{
+				$idioma = "Español";
+			}
 			
         	$query = $this->blog_model->check_user_ex($user,$mail);	
-
         	if ($query==false) {
 		         $this->session->set_flashdata('redu','usuario o email existente'); 
 				redirect('user/new_user');
         	}else{
-
-        		valid_char($pass);
+        		$len = strlen($pass);
+        		$valid=false;
+        		for ($i=0; $i <$len ; $i++) { 
+        			$char = substr($pass, $i);
+					if($char=="!" or $char =="#" or $char=="$" or $char=="%" or $char=="&" or $char=="/" or $char=="(" or $char==")" or $char=="=" or $char=="?" or $char=="¿" or $char=="¡" or $char=="|" or $char=="-" or $char=="_" or $char=="°" or $char=="+" or $char=="*" or $char=="{" or $char=="}" or $char=="." or $char==":" or $char==";" or $char=="," or $char=="@" or $char=="¬" or $char=="'" or $char=="¸" or $char=="~" or $char=="´" or $char=="¨" or $char=="^" or $char=="`" or $char=="·" or $char=="`" or $char=="\"" or $char=="\'" or $char=="·" or $char=="½" or $char=="[" or $char=="]" or $char=="̣" ){
+        				$valid = true;
+        			}
+       		
+            	//echo "<script language='javascript'> parent.location.reload(); </script>";
+        	}
         	if($valid == true){
         		$users = array(
 				        'user' => htmlspecialchars($this->input->post('user')),
@@ -56,7 +65,8 @@ class User extends CI_Controller{
 				        'name' => htmlspecialchars($this->input->post('name')),
 				        'email' => htmlspecialchars($this->input->post('email')),
 				        'type_user' => "user",
-				        'bann' =>"no"
+				        'bann' =>"no",
+				        'lang'=> $idioma
         				);  
 	        		$this->blog_model->insert_user('users', $users);
 	         		$this->session->set_flashdata('reins','Registro exitoso'); 
@@ -66,21 +76,16 @@ class User extends CI_Controller{
 	        		}else {
          				$this->session->set_flashdata('reca','Agrega caracteres especiales a tu contraseña'); 
     					redirect('user/new_user');
-
 	        		}
-
 			
        
 		//redirect(base_url());
-
         }
 		
-
 	}else{
 		$error = validation_errors();
          $this->session->set_flashdata('refor',$error); 
 		redirect('user/new_user');
-
 	}
 }
 

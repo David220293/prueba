@@ -17,6 +17,7 @@
 <p>Repite contraseña:<input type="password" name="passm" value="<?php echo set_value('passm'); ?>" required></p>
 
 <p>Email:<input type="text" name="email" value="<?php echo set_value('email'); ?>" required></p>
+<p>Selecciona un idioma <input type="radio" name="idioma" value="Ingles">Ingles<input type="radio" name="idioma" value="Español">Español</p>
 
 <p><input type="submit" value="Registrarse"></p>
 </form>

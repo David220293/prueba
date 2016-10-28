@@ -348,5 +348,10 @@ class Blog_model extends CI_Model {
         }
        
        }
+
+
+      function lenguage(){
+         
+        }
         
     }

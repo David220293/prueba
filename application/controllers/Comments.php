@@ -19,7 +19,7 @@ class Comments extends CI_Controller{
 		if ($datos==false) {
            $this->session->set_flashdata('noresult','No hay comentarios'); 
 		}
-
+		
 		$config['base_url'] = base_url().'comments/comments/'.$this->uri->segment(3);
 		$config['total_rows'] = $datos;
 		$config['per_page'] = 4;
@@ -55,10 +55,16 @@ class Comments extends CI_Controller{
 	
 
 	function comment_insert(){
+		
+			$this->lang->idioma();
 
 		$this->form_validation->set_rules('body', 'body', 'trim|required');
 		if ($this->form_validation->run() == TRUE)
         {
+
+        		
+
+
         	$cuerpo = $this->input->post['body'];
         	$comment = array(
 	        'entry_id' => htmlspecialchars($this->input->post('entry_id')),
