@@ -1,13 +1,21 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
- 
-//si no existe la función invierte_date_time la creamos
-if(!function_exists('add_valid_char'))
-{
-    //formateamos la fecha y la hora, función de cesarcancino.com
-    function valid_char($pass)
-    {
- 
-              $CI =& get_instance();
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+
+
+class MY_Form_validation extends CI_Form_validation{
+      
+
+
+        public function __construct()
+        {
+                parent::__construct();
+               // $this->load->model('blog_model');
+                //$this->blog_model('lenguage');
+                //redirect('login/lenguage');
+
+        }
+      function char($pass)
+       {        $CI =& get_instance();
 
  
                 $len = strlen($pass);
@@ -37,7 +45,6 @@ if(!function_exists('add_valid_char'))
  
                 }
                 return $valid;
-                
                 
     }
 

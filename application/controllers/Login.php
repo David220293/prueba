@@ -31,6 +31,7 @@ class Login extends CI_Controller{
 			$data = $this->blog_model->logeous($user);		
 
 			if($data){
+				
 				if ($this->bcrypt->check_password($pass, $data->pass))
 				{
 				    $user_data = array(
@@ -70,18 +71,7 @@ class Login extends CI_Controller{
 		}
 
 
-		function lenguage(){
-
-			$idi = "";
-			 if ($this->session->userdata('idioma')=="Español") {
-			 		$idi = "Español";
-                	return $idi;
-                	
-                }else{
-                	$idi = "English";
-                	return $idi;
-                }
-		}
+		
 
 
 

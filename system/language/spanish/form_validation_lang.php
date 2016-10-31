@@ -1,6 +1,7 @@
 <?php
 
 $lang['required']			= "El campo %s es obligatorio.";
+$lang['char']			= "El campo %s debe contener caracter especial.";
 $lang['isset']				= "El campo %s debe contener un valor.";
 $lang['valid_email']		= "El campo %s debe contener una dirección de correo válida.";
 $lang['valid_emails']		= "El campo %s debe contener todas las direcciones de correo válidas.";

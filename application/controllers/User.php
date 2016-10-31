@@ -25,9 +25,10 @@ class User extends CI_Controller{
 	function user_insert(){
 		$this->form_validation->set_rules('name', 'name', 'trim|required');
 		$this->form_validation->set_rules('user', 'user', 'trim|required');
-		$this->form_validation->set_rules('pass', 'pass', 'required|min_length[5]');
+		$this->form_validation->set_rules('pass', 'pass', 'required|min_length[5]|char');
 		$this->form_validation->set_rules('passm', 'passm', 'required|matches[pass]|min_length[5]');
 		$this->form_validation->set_rules('email','email','valid_email|required');
+		$this->form_validation->set_rules('idioma','idioma','required');
 		
 		if ($this->form_validation->run() == TRUE)
    		{		
@@ -43,22 +44,15 @@ class User extends CI_Controller{
 				$idioma = "Español";
 			}
 			
+			
         	$query = $this->blog_model->check_user_ex($user,$mail);	
         	if ($query==false) {
 		         $this->session->set_flashdata('redu','usuario o email existente'); 
 				redirect('user/new_user');
         	}else{
-        		$len = strlen($pass);
-        		$valid=false;
-        		for ($i=0; $i <$len ; $i++) { 
-        			$char = substr($pass, $i);
-					if($char=="!" or $char =="#" or $char=="$" or $char=="%" or $char=="&" or $char=="/" or $char=="(" or $char==")" or $char=="=" or $char=="?" or $char=="¿" or $char=="¡" or $char=="|" or $char=="-" or $char=="_" or $char=="°" or $char=="+" or $char=="*" or $char=="{" or $char=="}" or $char=="." or $char==":" or $char==";" or $char=="," or $char=="@" or $char=="¬" or $char=="'" or $char=="¸" or $char=="~" or $char=="´" or $char=="¨" or $char=="^" or $char=="`" or $char=="·" or $char=="`" or $char=="\"" or $char=="\'" or $char=="·" or $char=="½" or $char=="[" or $char=="]" or $char=="̣" ){
-        				$valid = true;
-        			}
-       		
+        		//valid_char($pass);
             	//echo "<script language='javascript'> parent.location.reload(); </script>";
-        	}
-        	if($valid == true){
+            	//if(valid_char($pass) == true){
         		$users = array(
 				        'user' => htmlspecialchars($this->input->post('user')),
 				        'pass' => $this->bcrypt->hash_password($pass),
@@ -73,14 +67,17 @@ class User extends CI_Controller{
 	         		redirect('user/new_user');
 					//echo "<script language='javascript'> parent.location.reload(); </script>";
 					
-	        		}else {
+	        		/*}else {
          				$this->session->set_flashdata('reca','Agrega caracteres especiales a tu contraseña'); 
     					redirect('user/new_user');
-	        		}
+	        		}*/
+        	}
+
+        	
 			
        
 		//redirect(base_url());
-        }
+        
 		
 	}else{
 		$error = validation_errors();
@@ -131,5 +128,8 @@ class User extends CI_Controller{
 		redirect('user/bann_users');
 
 	}
+
+
+	
 
 }

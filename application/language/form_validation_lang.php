@@ -1,5 +1,5 @@
 <?php
-
+$lang['char']			= "El campo %s es obligatorio.";
 $lang['required']			= "El campo %s es obligatorio.";
 $lang['isset']				= "El campo %s debe contener un valor.";
 $lang['valid_email']		= "El campo %s debe contener una dirección de correo válida.";
