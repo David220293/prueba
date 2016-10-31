@@ -1,12 +1,5 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="/assets/styles/stylei.css">
 
-	<title></title>
-</head>
-<body>
 <?php if ($filename!=""): ?>
 	<img src="/assets/images/uploads/<?=$filename?>">
 
@@ -71,6 +64,3 @@
 
 <?php echo $paginacion ?>
 
-
-</body>
-</html>

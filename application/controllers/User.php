@@ -14,10 +14,14 @@ class User extends CI_Controller{
 // se carga la vista new_user
 
 	function new_user(){
-		$data['title'] = "Registro";
-		$data['heading'] = "Inicia sesion";
-		
-		$this->load->view('sign_up_view',$data);
+		$datos = array(
+			'click' => true,
+			'nombre'=> "",
+			'user' => "",
+			'mail'=>"",
+			'pass'=>"");
+		$this->load->view('blog_view');		
+		$this->load->view('sign_up_view',$datos);
 
 	}
 
@@ -29,14 +33,18 @@ class User extends CI_Controller{
 		$this->form_validation->set_rules('passm', 'passm', 'required|matches[pass]|min_length[5]');
 		$this->form_validation->set_rules('email','email','valid_email|required');
 		$this->form_validation->set_rules('idioma','idioma','required');
+
+			$user = $this->input->post('user');
+			$mail = $this->input->post('email');
+			$pass = $this->input->post('pass');
+			$nombre = $this->input->post('name');
 		
 		if ($this->form_validation->run() == TRUE)
    		{		
     		//$usuario = $this->input->post('user');
 			//$mail = $this->input->post('email');
-			$user = $this->input->post('user');
-			$mail = $this->input->post('email');
-			$pass = $this->input->post('pass');
+			
+
 			$idioma ="";
 			if ($_POST['idioma'] =="Ingles") {
 				$idioma = "Ingles";
@@ -80,9 +88,16 @@ class User extends CI_Controller{
         
 		
 	}else{
+		$dat = array(
+			'click'=> true,
+			'nombre'=> $nombre,
+			'user' => $user,
+			'mail'=>$mail,
+			'pass'=>$pass);
 		$error = validation_errors();
          $this->session->set_flashdata('refor',$error); 
-		redirect('user/new_user');
+         	$this->load->view('blog_view');
+			$this->load->view('sign_up_view',$dat);
 	}
 }
 
@@ -96,6 +111,7 @@ class User extends CI_Controller{
 		$data= array(
 				'users' => $this->blog_model->get_users()
 			);
+		$this->load->view('blog_view');
 		$this->load->view('users_view',$data);
 	}
 
@@ -106,6 +122,7 @@ class User extends CI_Controller{
 		}
 		$data = array(
 			'users' => $this->blog_model->get_usersa());
+		$this->load->view('blog_view');
 		$this->load->view('usuario', $data);
 	}
 	public function admin_up(){

@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="/assets/styles/stylei.css">
+
 	<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
   	<script>tinymce.init({ selector:'textarea' });</script>
-	<title><?=$title?></title>
-</head>
-<body>
+
 <?php if ($this->session->userdata('login')==TRUE): ?>
 	
 
@@ -31,5 +26,3 @@
 <?php else: ?>
 	<?php echo "Acceso denegado" ?>
 <?php endif ?>
-</body>
-</html>

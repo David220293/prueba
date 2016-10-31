@@ -4,12 +4,12 @@ class Login extends CI_Controller{
 	public function __construct(){
         parent::__construct();
 
-        $this->load->helper('url');
-        $this->load->helper('form');
+      
         $this->load->model('blog_model');
         }
     //Se carga la vista login_view
 	function login_view(){
+		$this->load->view('blog_view');
 		$this->load->view('login_view');
 	}
 
@@ -48,8 +48,7 @@ class Login extends CI_Controller{
                
 
 
-            	echo "<script language='javascript'> parent.location.reload(); </script>";
-
+            	redirect('/');
 				}else{
 		         	$this->session->set_flashdata('passfail','Contraseña incorrecta'); 
  					redirect('login/login_view');

@@ -29,6 +29,8 @@ class Comments extends CI_Controller{
 		$config['next_link'] = '>';
 		$config['prev_link'] = '<';
 		$data = $this->blog_model->entry_espec($this->uri->segment(3));
+
+		if ($data!=false) {
 		$this->pagination->initialize($config);
 		$d = array(
 			'comment' => $this->blog_model->get_comments($config['per_page']),
@@ -45,7 +47,14 @@ class Comments extends CI_Controller{
 		$data['heading'] = "Mi blog";
 		$data['entries'] = $this->blog_model->get_entries();
 		*/
-		$this->load->view('comments_view',$d);
+		$this->load->view('blog_view');
+		$this->load->view('comments_view',$d);		
+		}else{
+			echo "Pagina no encontrada<br>";
+			echo anchor('/', 'Regresar');
+		}
+
+		
 	}
 
 	
@@ -109,7 +118,7 @@ class Comments extends CI_Controller{
 		if ($datos['comments']== false) {
          $this->session->set_flashdata('noresulban',"No hay comentarios baneados"); 
 		}
-		
+		$this->load->view('blog_view');
 		$this->load->view('bann_view',$datos);
 	}
 
@@ -146,8 +155,8 @@ class Comments extends CI_Controller{
 	}
 
 	public function regresar(){
-    	echo "<script language='javascript'> parent.location.reload(); </script>";
-
+    	//echo "<script language='javascript'> parent.location.reload(); </script>";
+		redirect('/');
 	}
 
 

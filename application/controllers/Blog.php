@@ -12,8 +12,9 @@ class Blog extends CI_Controller{
 
 	function index(){
 
-		/*$config['base_url'] = base_url().'blog/index/';
-		$config['total_rows'] = $this->blog_model->num_entries();
+			$datos = $this->blog_model->num_entries();
+			$config['base_url'] = base_url().'entries/entri/';
+		$config['total_rows'] = 
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
 		$config['first_link'] = '<<';
@@ -22,16 +23,22 @@ class Blog extends CI_Controller{
 		$config['prev_link'] = '<';
 
 		$this->pagination->initialize($config);
+		if ($datos!=false) {
+			
 		$data = array(
 			'entries' => $this->blog_model->get_entries($config['per_page']),
 			'paginacion'=> $this->pagination->create_links()
 			);
-*/
-		/*$data['title'] = "Bienvenidos a mi blog";
-		$data['heading'] = "Mi blog";
-		$data['entries'] = $this->blog_model->get_entries();
-		*/
 		$this->load->view('blog_view');
+		$this->load->view('entries_view',$data);
+		}else{
+			$data = array(
+			'entries' => $this->blog_model->get_entries($config['per_page']),
+			'paginacion'=> $this->pagination->create_links()
+			);
+		$this->load->view('blog_view');
+		$this->load->view('entries_view',$data);
+		}
 
 
 	}

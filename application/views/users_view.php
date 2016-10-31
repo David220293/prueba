@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-        <link rel="stylesheet" href="/assets/styles/stylei.css" type="text/css" />
 
-	<title></title>
-</head>
-<body>
 <?php if ($this->session->userdata('login')==TRUE): ?>
 
 <table>
@@ -36,5 +29,3 @@
 <?php else: ?>
 	<?php echo "Acceso denegado" ?>
 <?php endif ?>
-</body>
-</html>

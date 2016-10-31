@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-        <link rel="stylesheet" href="/assets/styles/stylei.css" type="text/css" />
 
-	<title></title>
-</head>
-<body>
 <?php if ($this->session->userdata('login')): ?>
 	
 	<?php foreach($comments as $row): ?>
@@ -26,6 +19,3 @@
 		<?php echo "acceso denegado" ?>
 	<?php endif ?>
 
-
-</body>
-</html>

@@ -19,7 +19,7 @@ class MY_Form_validation extends CI_Form_validation{
 
  
                 $len = strlen($pass);
-                $valid;
+                $valid = false;
                 
                 for ($i=0; $i <$len ; $i++) { 
                    

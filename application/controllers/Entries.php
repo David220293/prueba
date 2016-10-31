@@ -16,6 +16,7 @@ class Entries extends CI_Controller{
 
 		$data['title'] = "Entradas nueva";
 		$data['heading'] = "Ingresa nueva entrada";
+		$this->load->view('blog_view');
 		$this->load->view('new_view',$data);
 
 
@@ -23,8 +24,7 @@ class Entries extends CI_Controller{
 	}
 	function entri(){
 		$datos = $this->blog_model->num_entries();
-		if ($datos!=false) {
-			$config['base_url'] = base_url().'entries/entri/';
+		$config['base_url'] = base_url().'entries/entri/';
 		$config['total_rows'] = 
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
@@ -32,16 +32,24 @@ class Entries extends CI_Controller{
 		$config['last_link'] = '>>';
 		$config['next_link'] = '>';
 		$config['prev_link'] = '<';
+		if ($datos!=false) {
+			
 
 		$this->pagination->initialize($config);
 		$data = array(
 			'entries' => $this->blog_model->get_entries($config['per_page']),
 			'paginacion'=> $this->pagination->create_links()
 			);
-
+		$this->load->view('blog_view');
 		$this->load->view('entries_view',$data);
 		}else{
-			echo "No hay entradas";
+			$data = array(
+			'entries' => $this->blog_model->get_entries($config['per_page']),
+			'paginacion'=> $this->pagination->create_links()
+			);
+			$this->load->view('blog_view');
+			$this->load->view('entries_view',$data);
+
 		}
 		
 	}
@@ -59,6 +67,7 @@ class Entries extends CI_Controller{
 			$da['id'] = $datos->id;
 			$da['title'] = $datos->title;
 			$da['body'] = $datos->body;
+			$this->load->view('blog_view');
 			$this->load->view('edit_entries_view',$da);
 
 
@@ -76,8 +85,7 @@ class Entries extends CI_Controller{
 					$config['upload_path'] = './assets/images/uploads/';
 					$config['allowed_types'] = 'gif|jpg|png';
 					//$config['max_size']     = '100';
-					$config['max_width'] = '700';
-					$config['max_height'] = '600';
+					
 
 					$this->load->library('upload', $config);
 					if (!$this->upload->do_upload('userfile')) {
@@ -121,8 +129,7 @@ class Entries extends CI_Controller{
 		$config['upload_path'] = './assets/images/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		//$config['max_size']     = '100';
-		$config['max_width'] = '700';
-		$config['max_height'] = '600';
+		
 
 		$this->load->library('upload', $config);
 		
@@ -145,7 +152,8 @@ class Entries extends CI_Controller{
            
             $this->blog_model->insert_entries('entries', $entry);
             //redirect('entries/new_entry');
-            	echo "<script language='javascript'> parent.location.reload(); </script>";
+            	//echo "<script language='javascript'> parent.location.reload(); </script>";
+            redirect('/');
 
 		}else{
 			$error = validation_errors();
