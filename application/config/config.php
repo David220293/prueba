@@ -137,6 +137,7 @@ $config['subclass_prefix'] = 'MY_';
 |	autoloading (application/config/autoload.php)
 */
 $config['composer_autoload'] = FALSE;
+$config['csrf_protection'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

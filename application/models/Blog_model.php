@@ -77,6 +77,21 @@ class Blog_model extends CI_Model {
            
 
         }
+
+
+        public function update_entrie($id,$title,$body)
+        {try {
+             $data = array(
+            'title' =>$title,
+            'body' => $body);
+        $this->db->where('id', $id);
+        return $this->db->update('entries', $data);
+        } catch (Exception $e) {
+            echo "error al actualizar la entrada";
+        }
+           
+
+        }
         public function delete_entries($id){
             try {
                  $this->db->where('id',$id);

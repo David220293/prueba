@@ -94,11 +94,16 @@ class Entries extends CI_Controller{
 				 	$id = htmlspecialchars($this->input->post('id'));
 	        		$title = htmlspecialchars($this->input->post('title'));
 	        		$body = $this->input->post('body');
-	        		$filename = $this->upload->data('file_name');    
+	        		if ($this->upload->data('file_name') == "") {
+	        			$upd = $this->blog_model->update_entrie($id,$title,$body);
+         				$this->session->set_flashdata('entupd','Entrada actualizada');
+	        		}else{
+		        		$filename = $this->upload->data('file_name');    
+	        			$upd = $this->blog_model->update_entries($id,$title,$body,$filename);
+         				$this->session->set_flashdata('entupd','Entrada actualizada');
+	        		}
 
-	        		$upd = $this->blog_model->update_entries($id,$title,$body,$filename);
-	        		//echo "Actualizacion realizada";
-         			$this->session->set_flashdata('entupd','Entrada actualizada'); 
+	        		 
 
 			 		redirect('entries/entri');
 			 		}else{
