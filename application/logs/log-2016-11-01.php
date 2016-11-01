@@ -10,3 +10,20 @@ ERROR - 2016-11-01 09:53:40 --> Severity: error --> Exception: syntax error, une
 ERROR - 2016-11-01 09:54:20 --> Severity: error --> Exception: syntax error, unexpected 'public' (T_PUBLIC) /var/www/blog.com/public_html/application/models/Blog_model.php 130
 ERROR - 2016-11-01 09:54:21 --> Severity: error --> Exception: syntax error, unexpected 'public' (T_PUBLIC) /var/www/blog.com/public_html/application/models/Blog_model.php 130
 ERROR - 2016-11-01 09:54:21 --> Severity: error --> Exception: syntax error, unexpected 'public' (T_PUBLIC) /var/www/blog.com/public_html/application/models/Blog_model.php 130
+ERROR - 2016-11-01 10:48:43 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:48:44 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:48:44 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:48:48 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:49:45 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:54:32 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:54:32 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:54:33 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:54:33 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:54:34 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:03 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:04 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:05 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:05 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:06 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 10:55:06 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 11:02:24 --> Severity: error --> Exception: syntax error, unexpected '$config' (T_VARIABLE) /var/www/blog.com/public_html/application/controllers/Blog.php 18

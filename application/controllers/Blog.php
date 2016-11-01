@@ -14,7 +14,7 @@ class Blog extends CI_Controller{
 
 			$datos = $this->blog_model->num_entries();
 			$config['base_url'] = base_url().'entries/entri/';
-		$config['total_rows'] = 
+		$config['total_rows'] = $datos;
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
 		$config['first_link'] = '<<';

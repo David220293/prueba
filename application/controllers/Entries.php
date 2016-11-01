@@ -25,32 +25,24 @@ class Entries extends CI_Controller{
 	function entri(){
 		$datos = $this->blog_model->num_entries();
 		$config['base_url'] = base_url().'entries/entri/';
-		$config['total_rows'] = 
+		$config['total_rows'] = $datos;
 		$config['per_page'] = 4;
 		$config['num_links'] = 5;
 		$config['first_link'] = '<<';
 		$config['last_link'] = '>>';
 		$config['next_link'] = '>';
 		$config['prev_link'] = '<';
-		if ($datos!=false) {
+		$this->pagination->initialize($config);
+
 			
 
-		$this->pagination->initialize($config);
 		$data = array(
 			'entries' => $this->blog_model->get_entries($config['per_page']),
 			'paginacion'=> $this->pagination->create_links()
 			);
 		$this->load->view('blog_view');
 		$this->load->view('entries_view',$data);
-		}else{
-			$data = array(
-			'entries' => $this->blog_model->get_entries($config['per_page']),
-			'paginacion'=> $this->pagination->create_links()
-			);
-			$this->load->view('blog_view');
-			$this->load->view('entries_view',$data);
-
-		}
+		
 		
 	}
 
