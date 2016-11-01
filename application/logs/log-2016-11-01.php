@@ -28,3 +28,9 @@ ERROR - 2016-11-01 10:55:06 --> 404 Page Not Found: Faviconico/index
 ERROR - 2016-11-01 10:55:06 --> 404 Page Not Found: Faviconico/index
 ERROR - 2016-11-01 11:02:24 --> Severity: error --> Exception: syntax error, unexpected '$config' (T_VARIABLE) /var/www/blog.com/public_html/application/controllers/Blog.php 18
 ERROR - 2016-11-01 12:07:32 --> Severity: error --> Exception: syntax error, unexpected ';', expecting ')' /var/www/blog.com/public_html/application/models/Blog_model.php 87
+ERROR - 2016-11-01 12:33:32 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 12:41:08 --> Severity: Notice --> Undefined variable: filename /var/www/blog.com/public_html/application/views/edit_entries_view.php 25
+ERROR - 2016-11-01 12:42:56 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 12:44:03 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 12:44:15 --> 404 Page Not Found: Faviconico/index
+ERROR - 2016-11-01 12:46:09 --> 404 Page Not Found: Faviconico/index

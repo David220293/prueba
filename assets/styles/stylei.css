@@ -1,7 +1,13 @@
+
+
 body{
 	margin: 0;
 	padding: 0;
 }
+
+
+  .thumbnail {width:10%;height:10%;margin:5px;}
+
 #navi ul li{
 	list-style:none;
 	display: inline-block;

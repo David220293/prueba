@@ -22,6 +22,8 @@
 <?php if ($img == ""): ?>
 	<p>Selecciona una imagen:<input type="file" value="" name="userfile" size="20"></p>
 <?php else: ?>
+	<img src="/assets/images/uploads/<?=$img?>" height="10%" width="13%"/>
+
 	<p> <input type="submit" name="imagen" value="Act. imagen"> 
 
 <?php endif ?>
