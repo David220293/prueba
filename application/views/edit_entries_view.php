@@ -19,9 +19,14 @@
 
 <p>Texto:<textarea name="body" rows="10"  value="" required><?php  echo $body; ?></textarea></p>
 <input type="hidden" name="id" value="<?=$id?>">
-<p>Selecciona una imagen:<input type="file" name="userfile" size="20"></p>
+<?php if ($img == ""): ?>
+	<p>Selecciona una imagen:<input type="file" value="" name="userfile" size="20"></p>
+<?php else: ?>
+	<p> <input type="submit" name="imagen" value="Act. imagen"> 
 
-<p> <input type="submit" name="actualizar" value="Actualizar"> </p>
+<?php endif ?>
+
+<input type="submit" name="actualizar" value="Actualizar"> </p>
 
 </form>
     <h2><?php echo $this->session->flashdata('entupd'); ?></h2> 

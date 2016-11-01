@@ -237,3 +237,6 @@ ERROR - 2016-10-31 15:37:16 --> Severity: Notice --> Undefined variable: user /v
 ERROR - 2016-10-31 15:37:16 --> Severity: Notice --> Undefined variable: pass /var/www/blog.com/public_html/application/views/sign_up_view.php 26
 ERROR - 2016-10-31 15:37:16 --> Severity: Notice --> Undefined variable: pass /var/www/blog.com/public_html/application/views/sign_up_view.php 27
 ERROR - 2016-10-31 15:37:16 --> Severity: Notice --> Undefined variable: mail /var/www/blog.com/public_html/application/views/sign_up_view.php 29
+ERROR - 2016-10-31 17:30:31 --> Could not find the language line "form_validation_required"
+ERROR - 2016-10-31 17:30:31 --> Could not find the language line "form_validation_required"
+ERROR - 2016-10-31 17:44:50 --> Severity: error --> Exception: syntax error, unexpected 'echo' (T_ECHO) /var/www/blog.com/public_html/application/views/edit_entries_view.php 22

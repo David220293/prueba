@@ -67,6 +67,7 @@ class Entries extends CI_Controller{
 			$da['id'] = $datos->id;
 			$da['title'] = $datos->title;
 			$da['body'] = $datos->body;
+			$da['img'] = $datos->filename;
 			$this->load->view('blog_view');
 			$this->load->view('edit_entries_view',$da);
 
@@ -81,8 +82,8 @@ class Entries extends CI_Controller{
 
 			 	if ($this->form_validation->run()==true) {
 
-
-					$config['upload_path'] = './assets/images/uploads/';
+			 		if (isset($_POST['actualizar'])) {
+			 			$config['upload_path'] = './assets/images/uploads/';
 					$config['allowed_types'] = 'gif|jpg|png';
 					//$config['max_size']     = '100';
 					
@@ -108,6 +109,18 @@ class Entries extends CI_Controller{
          			$this->session->set_flashdata('entupd','Entrada actualizada'); 
 
 			 		redirect('entries/entri');
+			 		}else{
+			 			$id = $this->input->post('id');
+			 			$datos = $this->blog_model->call_ent($id);
+						$da['id'] = $datos->id;
+						$da['title'] = $datos->title;
+						$da['body'] = $datos->body;
+						$da['img'] = "";
+						$this->load->view('blog_view');
+						$this->load->view('edit_entries_view',$da);
+
+			 		}
+					
 
 			 	}else{
 					$error = validation_errors();

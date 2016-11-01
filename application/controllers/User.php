@@ -56,7 +56,18 @@ class User extends CI_Controller{
         	$query = $this->blog_model->check_user_ex($user,$mail);	
         	if ($query==false) {
 		         $this->session->set_flashdata('redu','usuario o email existente'); 
-				redirect('user/new_user');
+		         $dat = array(
+				'click'=> true,
+				'nombre'=> $nombre,
+				'user' => $user,
+				'mail'=>$mail,
+				'pass'=>$pass);
+				
+	         	$this->load->view('blog_view');
+				$this->load->view('sign_up_view',$dat);
+
+
+				//redirect('user/new_user');
         	}else{
         		//valid_char($pass);
             	//echo "<script language='javascript'> parent.location.reload(); </script>";

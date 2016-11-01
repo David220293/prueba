@@ -99,8 +99,27 @@ class Blog_model extends CI_Model {
             } catch (Exception $e) {
                 echo "Error al traer la informacion de la entrada especifica";
             }
+
+
+
            
 
+        }
+
+
+
+         public function call_ent($id){
+            try {
+                $this->db->select('*');
+                $this->db->from('entries');
+                //$this->db->where('title',$titulo);
+                $this->db->where('id',$id);
+                $query = $this->db->get();
+                $fila = $query->row();
+                return $fila; 
+            } catch (Exception $e) {
+                echo "Error al traer la informacion de la entrada especifica";
+            }
         }
 
 
